@@ -22,113 +22,69 @@
                     <div class="row">
                         <div class="col">
                             <asp:Label ID="Label8" runat="server" Text="Codigo:"></asp:Label>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtCodigo" ForeColor="Red" ValidationGroup="agua"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtCodigo" ValidationExpression="^\d+$" ForeColor="Red" ValidationGroup="agua"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtCodigo" ForeColor="Red" ></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="*" ControlToValidate="txtCodigo" ValidationExpression="^\d+$" ForeColor="Red" ></asp:RegularExpressionValidator>
                             <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:TextBox ID="txtCodigo" runat="server" ValidationGroup="agua"></asp:TextBox>
+                            <asp:TextBox ID="txtCodigo" runat="server" ></asp:TextBox>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <asp:Label ID="Label1" runat="server" Text="Nombre:"></asp:Label>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="txtNombre" ForeColor="Red" ValidationGroup="agua"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="*" ControlToValidate="txtNombre" ValidationExpression="^[\w\-\s]+$" ForeColor="Red" ValidationGroup="agua"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="txtNombre" ForeColor="Red" ></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="*" ControlToValidate="txtNombre" ValidationExpression="^[\w\-\s]+$" ForeColor="Red" ></asp:RegularExpressionValidator>
                             <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:TextBox ID="txtNombre" runat="server" ValidationGroup="agua"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" ></asp:TextBox>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col">
                             <asp:Label ID="Label4" runat="server" Text="Cantidad:"></asp:Label>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="txtCantidad" ForeColor="Red" ValidationGroup="agua"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="txtCantidad" ValidationExpression="^\d+$" ForeColor="Red" ValidationGroup="agua"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="txtCantidad" ForeColor="Red" ></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="txtCantidad" ValidationExpression="^\d+$" ForeColor="Red" ></asp:RegularExpressionValidator>
                             <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" ValidationGroup="agua"></asp:TextBox>
+                            <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" ></asp:TextBox>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col">
                             <asp:Label ID="Label6" runat="server" Text="Precio:"></asp:Label>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtPrecio" ForeColor="Red" ValidationGroup="agua"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtPrecio" ValidationExpression="^\d+$" ForeColor="Red" ValidationGroup="agua"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtPrecio" ForeColor="Red" ></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtPrecio" ValidationExpression="^\d+$" ForeColor="Red" ></asp:RegularExpressionValidator>
                             <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:TextBox ID="txtPrecio" runat="server" TextMode="Number" ValidationGroup="agua"></asp:TextBox>
+                            <asp:TextBox ID="txtPrecio" runat="server" TextMode="Number" ></asp:TextBox>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                            <asp:Button ID="btGuardar" runat="server" Text="Guardar" OnClick="btGuardar_Click" ValidationGroup="agua"/>
+                            <asp:Button ID="btGuardar" runat="server" Text="Guardar" OnClick="btGuardar_Click" />
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <asp:Button ID="btCancelar" runat="server" Text="Cancelar" ValidationGroup="agua"/>
+                            <asp:Button ID="btCancelar" runat="server" Text="Cancelar" />
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card" style="margin-top: 40px; width: 50%;">
-                <div class="card-header" style="background: #8C7353;">
-                    <asp:Label ID="Label5" runat="server" Text="Lista" Font-Size="XX-Large"></asp:Label>
-                </div>
-                <div class="card-body" style="background: #D9BB95">
-                    <div class="row">
-                        <div class="col">
-                            <asp:DataList ID="DataList1" runat="server" CellPadding="4" ForeColor="#333333" Height="100%" Width="100%" OnItemCommand="Comando">
-                                <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
-                                <EditItemTemplate>
-                                    Codigo:&nbsp;&nbsp; <%#Eval("codigo") %>
-                                    <asp:Label ID="Label9" runat="server" Text='<%# Eval("codigo") %>'></asp:Label>
-                                    <br />
-                                    Nombre:&nbsp;&nbsp; <%#Eval("nombre") %>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("nombre") %>'></asp:TextBox>
-                                    <br />
-                                    Cantidad:&nbsp;&nbsp; <%#Eval("cantidad") %>
-                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("cantidad") %>'></asp:TextBox>
-                                    <br />
-                                    Precio:&nbsp;&nbsp; <%#Eval("precio") %>
-                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Eval("precio") %>'></asp:TextBox>
-                                    <br />
-                                    <br />
-                                    <asp:Button ID="Button1" runat="server" CommandName="actualizar" Text="Actualizar" />
-                                    <asp:Button ID="Button2" runat="server" CommandName="cancelar" Text="Cancelar" />
-                                </EditItemTemplate>
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                <ItemTemplate>
-                                    Codigo:&nbsp;&nbsp; <%#Eval("codigo") %><br />
-                                    Nombre:&nbsp;&nbsp; <%#Eval("nombre") %><br />
-                                    Cantidad:&nbsp;&nbsp; <%#Eval("cantidad") %><br />
-                                    Precio:&nbsp;&nbsp; <%#Eval("precio") %><br />
-                                    <br />
-                                    <asp:Button ID="Button1" runat="server" CommandName="editar" Text="Editar" ValidationGroup="pes"/>
-                                    <asp:Button ID="Button2" runat="server" CommandName="borrar" Text="Borrar" ValidationGroup="pes"/>
-                                </ItemTemplate>
-                                <SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                            </asp:DataList>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        &nbsp;</div>
+            </div>            
+        </div>
     </form>
 </body>
 </html>

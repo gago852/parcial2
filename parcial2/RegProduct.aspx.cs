@@ -15,18 +15,10 @@ namespace parcial2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            llenar();
+
         }
 
-        private void llenar()
-        {
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from producto", con);
-            DataSet dataSet = new DataSet();
-            sqlDataAdapter.Fill(dataSet);
 
-            DataList1.DataSource = dataSet;
-            DataList1.DataBind();
-        }
 
         protected void btGuardar_Click(object sender, EventArgs e)
         {
@@ -49,16 +41,9 @@ namespace parcial2
             con.Close();
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('producto guardado')", true);
-            llenar();
+
         }
 
-        protected void Comando(object source, DataListCommandEventArgs e)
-        {
-            if (e.CommandName == "editar")
-            {
-                DataList1.EditItemIndex = e.Item.ItemIndex;
-                llenar();
-            }
-        }
+        
     }
 }
