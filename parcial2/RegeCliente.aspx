@@ -114,13 +114,13 @@
                         <div class="col">
                             <asp:Label ID="Label10" runat="server" Text="Edad:"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ControlToValidate="txtEdad" ForeColor="Red"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ErrorMessage="*" ControlToValidate="txtEdad" ValidationExpression="\d{3}" ForeColor="Red"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ErrorMessage="*" ControlToValidate="txtEdad" ValidationExpression="\d{2,3}" ForeColor="Red"></asp:RegularExpressionValidator>
                             <br />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:TextBox ID="txtEdad" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtEdad" runat="server" TextMode="Number"></asp:TextBox>
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                            <asp:Button ID="btGuardar" runat="server" Text="Guardar" />
+                            <asp:Button ID="btGuardar" runat="server" Text="Guardar" OnClick="btGuardar_Click" />
                         </div>
                         <div class="col d-flex justify-content-center">
                             <asp:Button ID="btCancelar" runat="server" Text="Cancelar" />
