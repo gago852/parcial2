@@ -29,7 +29,7 @@ namespace parcial2
                 llenar();
         }
 
-        protected void Comando(object source, DataListCommandEventArgs e)
+        protected void ComandoD1(object source, DataListCommandEventArgs e)
         {
             if (e.CommandName == "editar")
             {

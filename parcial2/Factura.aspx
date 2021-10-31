@@ -23,7 +23,7 @@
                             <br />
                             <asp:DropDownList ID="ddCedulas" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="nombre" DataValueField="nombre">
                             </asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [cedula] FROM [cliente]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [cedula], [nombre] FROM [cliente]"></asp:SqlDataSource>
                         </div>
                     </div>
                     <div class="row">
@@ -41,10 +41,10 @@
                             <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"></asp:TextBox>
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <asp:Button ID="btGuardar" runat="server" Text="Guardar" OnClick="btGuardar_Click" />
+                            <asp:Button ID="btGuardar" runat="server" Text="Guardar"/>
                         </div>
                     </div>
-                    <div class="row">
+                    <%--<div class="row">
                         <div class="col">
                             <asp:DataList ID="DataList1" runat="server">
                                 <ItemTemplate>
@@ -62,7 +62,7 @@
                                 </ItemTemplate>
                             </asp:DataList>
                         </div>                        
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>

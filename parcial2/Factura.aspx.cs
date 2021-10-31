@@ -18,15 +18,15 @@ namespace parcial2
 
         }
 
-        protected void btGuardar_Click(object sender, EventArgs e)
-        {
-            String cliente = ddCedulas.SelectedValue;
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from cliente where cedula='" + cliente + "'", con);
-            DataSet dataSet = new DataSet();
-            sqlDataAdapter.Fill(dataSet);
+        //protected void btGuardar_Click(object sender, EventArgs e)
+        //{
+        //    String cliente = ddCedulas.SelectedValue;
+        //    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from cliente where cedula='" + cliente + "'", con);
+        //    DataSet dataSet = new DataSet();
+        //    sqlDataAdapter.Fill(dataSet);
 
-            String nombrecliente = dataSet.Tables[0].Rows[0].Field<String>("nombre")+" "+ dataSet.Tables[0].Rows[0].Field<String>("apellido");
+        //    String nombrecliente = dataSet.Tables[0].Rows[0].Field<String>("nombre")+" "+ dataSet.Tables[0].Rows[0].Field<String>("apellido");
 
-        }
+        //}
     }
 }
