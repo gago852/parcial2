@@ -65,7 +65,7 @@
                 <div class="card-body" style="background: #D9BB95">
                     <div class="row">
                         <div class="col">
-                            <asp:DataList ID="DataList2" runat="server" CellPadding="4" ForeColor="#333333" Height="100%" Width="100%" OnItemCommand="ComandoD1">
+                            <asp:DataList ID="DataList2" runat="server" CellPadding="4" ForeColor="#333333" Height="100%" Width="100%" OnItemCommand="ComandoD2">
                                 <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
                                 <EditItemTemplate>
                                     Cedula:&nbsp;&nbsp; <%#Eval("cedula") %>
@@ -100,11 +100,6 @@
                                     <br />
                                     Metodo de pago:&nbsp;&nbsp;
                                     <asp:TextBox ID="TextBox10" runat="server" Text='<%# Eval("pago") %>'></asp:TextBox>
-                                    <asp:DropDownList ID="ddPago" runat="server" AutoPostBack="True" i>
-                                        <asp:ListItem>Efectivo</asp:ListItem>
-                                        <asp:ListItem>Tarjeta de credito/debito</asp:ListItem>
-                                        <asp:ListItem>Web</asp:ListItem>
-                                    </asp:DropDownList>
                                     <br />
                                     <br />
                                     <asp:Button ID="Button1" runat="server" CommandName="actualizar" Text="Actualizar" />
@@ -139,25 +134,43 @@
 
             <div class="card" style="margin-top: 40px; width: 50%;">
                 <div class="card-header" style="background: #8C7353;">
-                    <asp:Label ID="Label2" runat="server" Text="Lista Productos" Font-Size="XX-Large"></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="Lista Vendedores" Font-Size="XX-Large"></asp:Label>
                 </div>
                 <div class="card-body" style="background: #D9BB95">
                     <div class="row">
                         <div class="col">
-                            <asp:DataList ID="DataList3" runat="server" CellPadding="4" ForeColor="#333333" Height="100%" Width="100%" OnItemCommand="ComandoD1">
+                            <asp:DataList ID="DataList3" runat="server" CellPadding="4" ForeColor="#333333" Height="100%" Width="100%" OnItemCommand="ComandoD3">
                                 <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
                                 <EditItemTemplate>
-                                    Codigo:&nbsp;&nbsp; <%#Eval("codigo") %>
-                                    <asp:Label ID="Label9" runat="server" Text='<%# Eval("codigo") %>'></asp:Label>
+                                    Cedula:&nbsp;&nbsp; <%#Eval("cedula") %>
+                                    <asp:Label ID="Label9" runat="server" Text='<%# Eval("cedula") %>'></asp:Label>
                                     <br />
                                     Nombre:&nbsp;&nbsp;
                                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("nombre") %>'></asp:TextBox>
                                     <br />
-                                    Cantidad:&nbsp;&nbsp;
-                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("cantidad") %>'></asp:TextBox>
+                                    Apellido:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("apellido") %>'></asp:TextBox>
                                     <br />
-                                    Precio:&nbsp;&nbsp;
-                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Eval("precio") %>'></asp:TextBox>
+                                    Direccion:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Eval("direccion") %>'></asp:TextBox>
+                                    <br />
+                                    Telefono Fijo:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Eval("fijo") %>'></asp:TextBox>
+                                    <br />
+                                    Telefono Celular:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Eval("celular") %>'></asp:TextBox>
+                                    <br />
+                                    Correo:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox6" runat="server" Text='<%# Eval("correo") %>'></asp:TextBox>
+                                    <br />
+                                    Edad:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox7" runat="server" Text='<%# Eval("edad") %>'></asp:TextBox>
+                                    <br />
+                                    Sexo:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox8" runat="server" Text='<%# Eval("sexo") %>'></asp:TextBox>
+                                    <br />
+                                    Fecha de nacimiento:&nbsp;&nbsp;
+                                    <asp:TextBox ID="TextBox9" runat="server" Text='<%# Eval("fecha") %>'></asp:TextBox>
                                     <br />
                                     <br />
                                     <asp:Button ID="Button1" runat="server" CommandName="actualizar" Text="Actualizar" />
@@ -167,11 +180,17 @@
                                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                 <ItemTemplate>
-                                    Codigo:&nbsp;&nbsp;
-                                    <asp:Label ID="Label10" runat="server" Text='<%# Eval("codigo") %>'></asp:Label><br />
+                                    Cedula:&nbsp;&nbsp;
+                                    <asp:Label ID="Label10" runat="server" Text='<%# Eval("cedula") %>'></asp:Label><br />
                                     Nombre:&nbsp;&nbsp; <%#Eval("nombre") %><br />
-                                    Cantidad:&nbsp;&nbsp; <%#Eval("cantidad") %><br />
-                                    Precio:&nbsp;&nbsp; <%#Eval("precio") %><br />
+                                    Apellido:&nbsp;&nbsp; <%#Eval("apellido") %><br />
+                                    Direccion:&nbsp;&nbsp; <%#Eval("direccion") %><br />
+                                    Telefono Fijo:&nbsp;&nbsp; <%#Eval("fijo") %><br />
+                                    Telefono Celular:&nbsp;&nbsp; <%#Eval("celular") %><br />
+                                    Correo:&nbsp;&nbsp; <%#Eval("correo") %><br />
+                                    Edad:&nbsp;&nbsp; <%#Eval("edad") %><br />
+                                    Sexo:&nbsp;&nbsp; <%#Eval("sexo") %><br />
+                                    Fecha de nacimiento:&nbsp;&nbsp; <%#Eval("fecha") %>
                                     <br />
                                     <asp:Button ID="Button3" runat="server" CommandName="editar" Text="Editar" />
                                     <asp:Button ID="Button4" runat="server" CommandName="borrar" Text="Borrar" />

@@ -20,17 +20,17 @@ namespace parcial2
 
         protected void btGuardar_Click(object sender, EventArgs e)
         {
+            String cedula = txtCedula.Text;
             String nombre = txtNombre.Text;
             String apellido = txtApellido.Text;
-            String cedula = txtCedula.Text;
             String direccion = txtDireccion.Text;
-            String fijo = txtNombre.Text;
-            String celular = txtApellido.Text;
-            String correo = txtCedula.Text;
-            String edad = txtDireccion.Text;
+            String fijo = txtFijo.Text;
+            String celular = txtCel.Text;
+            String correo = txtEmail.Text;
+            String edad = txtEdad.Text;
             String genero = rbGenero.SelectedValue;
-            String pago = ddPago.SelectedValue;
             String fecha = txtFechaCumple.Text;
+            String pago = ddPago.SelectedValue;
 
             SqlCommand sqlCommand = new SqlCommand("insert into cliente (cedula, nombre, apellido, direccion, fijo, " +
                 "celular, correo, edad, sexo, fecha, pago) values (@cedula, @nombre, @apellido, @direccion, @fijo, @celular, @correo, @edad, @genero, @fecha, @pago)", con);
