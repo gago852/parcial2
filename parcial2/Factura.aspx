@@ -12,57 +12,91 @@
 <body style="background: #FFE8C9; color: white;">
     <form id="form1" runat="server">
         <div class="container">
-            <div class="card" style="margin-top: 40px; width: 50%;">
-                <div class="card-header" style="background: #8C7353;">
-                    <asp:Label ID="Label2" runat="server" Text="Factura" Font-Size="XX-Large"></asp:Label>
-                </div>
-                <div class="card-body" style="background: #D9BB95">
-                    <div class="row">
-                        <div class="col">
-                            <asp:Label ID="Label1" runat="server" Text="Cedula cliente:"></asp:Label>
-                            <br />
-                            <asp:DropDownList ID="ddCedulas" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="nombre" DataValueField="nombre">
-                            </asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [cedula], [nombre] FROM [cliente]"></asp:SqlDataSource>
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="margin-top: 40px; width: 50%;">
+                        <div class="card-header" style="background: #8C7353;">
+                            <asp:Label ID="Label2" runat="server" Text="Factura" Font-Size="XX-Large"></asp:Label>
+                            <asp:Button ID="Button1" runat="server" Text="atras" ValidationGroup="atras" OnClick="Button1_Click" />
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <asp:Label ID="Label7" runat="server" Text="Producto:"></asp:Label>
-                            <br />
-                            <asp:DropDownList ID="ddProducto" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="nombre" DataValueField="nombre">
-                            </asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [nombre] FROM [producto]"></asp:SqlDataSource>
-                        </div>
-                        <div class="col">
-                            <asp:Label ID="Label14" runat="server" Text="Cantidad:"></asp:Label>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ControlToValidate="txtCantidad" ForeColor="Red"></asp:RequiredFieldValidator>
-                            <br />
-                            <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"></asp:TextBox>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <asp:Button ID="btGuardar" runat="server" Text="Guardar"/>
-                        </div>
-                    </div>
-                    <%--<div class="row">
-                        <div class="col">
-                            <asp:DataList ID="DataList1" runat="server">
-                                <ItemTemplate>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    Producto:&nbsp;&nbsp; <%#Eval("nproducto") %><br />
-                                                    cantidad:&nbsp;&nbsp; <%#Eval("cantidad") %><br />
-                                                    Precio:&nbsp;&nbsp; <%#Eval("precio") %><br />
+                        <div class="card-body" style="background: #D9BB95">
+                            <div class="row">
+                                <div class="col">
+                                    <asp:Label ID="Label1" runat="server" Text="Cedula cliente:"></asp:Label>
+                                    <br />
+                                    <asp:DropDownList ID="ddCedulas" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="nombre" DataValueField="cedula">
+                                    </asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [cedula], [nombre] FROM [cliente]"></asp:SqlDataSource>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <asp:Label ID="Label7" runat="server" Text="Producto:"></asp:Label>
+                                    <br />
+                                    <asp:DropDownList ID="ddProducto" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="nombre" DataValueField="codigo">
+                                    </asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [nombre], [codigo] FROM [producto]"></asp:SqlDataSource>
+                                </div>
+                                <div class="col">
+                                    <asp:Label ID="Label14" runat="server" Text="Cantidad:"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ControlToValidate="txtCantidad" ForeColor="Red" ValidationGroup="producto"></asp:RequiredFieldValidator>
+                                    <br />
+                                    <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" ValidationGroup="producto"></asp:TextBox>
+                                </div>
+                                <div class="col d-flex justify-content-center">
+                                    <asp:Button ID="btGuardar" runat="server" Text="Guardar" OnClick="btGuardar_Click" ValidationGroup="producto" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <asp:DataList ID="DataList1" runat="server" CellPadding="4" ForeColor="#333333">
+                                        <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
+                                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                        <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                        <ItemTemplate>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Cedula del comprador:&nbsp;&nbsp; <%#Eval("idcliente") %><br />
+                                                            nombre del cliente:&nbsp;&nbsp; <%#Eval("nombreCliente") %><br />
+                                                            nombre del producto:&nbsp;&nbsp; <%#Eval("nombreProducto") %><br />
+                                                            cantidad:&nbsp;&nbsp; <%#Eval("cantidad") %><br />
+                                                            PrecioUnitario:&nbsp;&nbsp; <%#Eval("precioUnitario") %><br />
+                                                            vendedor:&nbsp;&nbsp; <%#Eval("nombreVendedor") %><br />
+                                                            PrecioSubtotal:&nbsp;&nbsp; <%#Eval("precioSubtotal") %><br />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:DataList>
-                        </div>                        
-                    </div>--%>
+                                        </ItemTemplate>
+                                        <SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                    </asp:DataList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="margin-top: 40px; width: 50%;">
+                        <div class="card-header" style="background: #8C7353;">
+                            <asp:Label ID="Label3" runat="server" Text="Total" Font-Size="XX-Large"></asp:Label>
+                            <asp:Button ID="Button2" runat="server" Text="reset" ValidationGroup="reset" OnClick="Button2_Click" />
+                        </div>
+                        <div class="card-body" style="background: #D9BB95">
+                            <div class="row">
+                                <div class="col">
+                                    <asp:Label ID="Label4" runat="server" Text="Total a pagar: testo de ejemplo"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <asp:Button ID="Button3" runat="server" Text="calcular" ValidationGroup="calcular" OnClick="Button3_Click" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

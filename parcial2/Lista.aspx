@@ -15,6 +15,7 @@
             <div class="card" style="margin-top: 40px; width: 50%;">
                 <div class="card-header" style="background: #8C7353;">
                     <asp:Label ID="Label5" runat="server" Text="Lista Productos" Font-Size="XX-Large"></asp:Label>
+                    <asp:Button ID="Button1" runat="server" Text="atras" OnClick="Button1_Click" ValidationGroup="atras"/>
                 </div>
                 <div class="card-body" style="background: #D9BB95">
                     <div class="row">

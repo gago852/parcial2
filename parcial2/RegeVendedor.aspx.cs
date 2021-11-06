@@ -53,5 +53,10 @@ namespace parcial2
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Vendedor guardado')", true);
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Main.aspx");
+        }
     }
 }

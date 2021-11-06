@@ -15,7 +15,107 @@ namespace parcial2
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\gabriel\pProg\cshar\asp\parcial2\parcial2\App_Data\Database1.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+                llenar(null);
+        }
 
+        private void llenar(String condicion)
+        {
+            String sql = "";
+            if (condicion != null)
+            {
+                sql = "select c.cedula as idcliente, c.nombre as nombreCliente, f.cantidad, v.nombre as nombreVendedor, " +
+                    "f.precio as precioSubtotal, p.nombre as nombreProducto, p.precio as precioUnitario " +
+                    "from factura f " +
+                    "INNER JOIN cliente c on f.idcliente=c.cedula " +
+                    "INNER JOIN vendedor v on f.idvendedor=v.cedula " +
+                    "INNER JOIN producto p on f.idproducto=p.codigo" +
+                    " where f.idcliente='" + condicion + "'";
+            }
+            else
+            {
+                sql = "select c.cedula as idcliente, c.nombre as nombreCliente, f.cantidad, v.nombre as nombreVendedor, " +
+                    "f.precio as precioSubtotal, p.nombre as nombreProducto, p.precio as precioUnitario " +
+                    "from factura f " +
+                    "INNER JOIN cliente c on f.idcliente=c.cedula " +
+                    "INNER JOIN vendedor v on f.idvendedor=v.cedula " +
+                    "INNER JOIN producto p on f.idproducto=p.codigo";
+            }
+
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sql, con);
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+
+            DataList1.DataSource = dataSet;
+            DataList1.DataBind();
+        }
+
+        protected void btGuardar_Click(object sender, EventArgs e)
+        {
+            String cliente = ddCedulas.SelectedValue;
+
+            String codigoProducto = ddProducto.SelectedValue;
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from producto where codigo='" + codigoProducto + "'", con);
+            DataSet dataSetProducto = new DataSet();
+            sqlDataAdapter.Fill(dataSetProducto);
+            int canditad = int.Parse(txtCantidad.Text);
+
+            int subtotal = int.Parse(dataSetProducto.Tables[0].Rows[0].Field<String>("precio")) * canditad;
+
+            sqlDataAdapter = new SqlDataAdapter("select * from vendedor", con);
+            DataSet dataSetVendedor = new DataSet();
+            sqlDataAdapter.Fill(dataSetVendedor);
+
+
+            int randVendedor = new Random().Next(dataSetVendedor.Tables[0].Rows.Count);
+
+            String cedulaVendedor = dataSetVendedor.Tables[0].Rows[randVendedor].Field<String>("cedula");
+
+            SqlCommand sqlCommand = new SqlCommand("insert into factura (idcliente, precio, cantidad, idvendedor," +
+                " idproducto) values (@idcliente, @precio, @cantidad, @idvendedor, @idproducto)", con);
+
+            sqlCommand.Parameters.Add("@idcliente", SqlDbType.VarChar).Value = cliente;
+            sqlCommand.Parameters.Add("@precio", SqlDbType.VarChar).Value = subtotal;
+            sqlCommand.Parameters.Add("@cantidad", SqlDbType.VarChar).Value = canditad;
+            sqlCommand.Parameters.Add("@idvendedor", SqlDbType.VarChar).Value = cedulaVendedor;
+            sqlCommand.Parameters.Add("@idproducto", SqlDbType.VarChar).Value = codigoProducto;
+
+            con.Open();
+            sqlCommand.ExecuteNonQuery();
+            con.Close();
+            llenar(null);
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('factura guardado')", true);
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Main.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Label4.Text = "Total a pagar: testo de ejemplo";
+            llenar(null);
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            String cedula = ddCedulas.SelectedValue;
+
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from factura where idcliente='" + cedula + "'", con);
+            DataSet dataSet= new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            int cont = 0;
+
+            for (int i=0; i < dataSet.Tables[0].Rows.Count; i = i + 1)
+            {
+                cont = cont + int.Parse(dataSet.Tables[0].Rows[i].Field<String>("precio"));
+            }
+
+            Label4.Text = "Total a pagar: " + cont;
+
+            llenar(cedula);
         }
 
         //protected void btGuardar_Click(object sender, EventArgs e)

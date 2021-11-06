@@ -15,6 +15,7 @@
             <div class="card" style="margin-top: 40px; width: 50%;">
                 <div class="card-header" style="background: #8C7353;">
                     <asp:Label ID="Label2" runat="server" Text="Registrar Producto" Font-Size="XX-Large"></asp:Label>
+                    <asp:Button ID="Button1" runat="server" Text="atras" OnClick="Button1_Click" ValidationGroup="atras" />
                     <br />
                     <asp:Label ID="Label3" runat="server" Text="Para agregar un nuevo producto, por favor llenar tu informacion"></asp:Label>
                 </div>
