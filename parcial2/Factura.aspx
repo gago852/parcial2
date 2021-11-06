@@ -49,8 +49,35 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <asp:DataList ID="DataList1" runat="server" CellPadding="4" ForeColor="#333333">
+                                    <asp:DataList ID="DataList1" runat="server" CellPadding="4" ForeColor="#333333" OnItemCommand="comando">
                                         <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
+                                        <EditItemTemplate>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            codigo del pedido:&nbsp;&nbsp;
+                                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("pedido") %>'></asp:Label>
+                                                            <br />
+                                                            Cedula del comprador:&nbsp;&nbsp;
+                                                            <asp:Label ID="Label9" runat="server" Text='<%# Eval("idcliente") %>'></asp:Label>
+                                                            <br />
+                                                            nombre del cliente:&nbsp;&nbsp; <%#Eval("nombreCliente") %>
+                                                            <br />
+                                                            nombre del producto:&nbsp;&nbsp; <%#Eval("nombreProducto") %>
+                                                            <br />
+                                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("codigoProducto") %>'></asp:Label>
+                                                            <br />
+                                                            cantidad:&nbsp;&nbsp
+                                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Eval("cantidad") %>'></asp:TextBox>
+                                                            <br />
+                                                            <asp:Button ID="Button4" runat="server" CommandName="actualizar" Text="actualizar" ValidationGroup="edicion" />
+                                                            <asp:Button ID="Button5" runat="server" CommandName="cancelar" Text="cancelar" ValidationGroup="edicion" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </EditItemTemplate>
                                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                         <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                         <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
@@ -59,13 +86,20 @@
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col">
-                                                            Cedula del comprador:&nbsp;&nbsp; <%#Eval("idcliente") %><br />
+                                                            codigo del pedido:&nbsp;&nbsp;
+                                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("pedido") %>'></asp:Label>
+                                                            <br />
+                                                            Cedula del comprador:&nbsp;&nbsp;
+                                                            <asp:Label ID="Label9" runat="server" Text='<%# Eval("idcliente") %>'></asp:Label>
+                                                            <br />
                                                             nombre del cliente:&nbsp;&nbsp; <%#Eval("nombreCliente") %><br />
                                                             nombre del producto:&nbsp;&nbsp; <%#Eval("nombreProducto") %><br />
                                                             cantidad:&nbsp;&nbsp; <%#Eval("cantidad") %><br />
                                                             PrecioUnitario:&nbsp;&nbsp; <%#Eval("precioUnitario") %><br />
                                                             vendedor:&nbsp;&nbsp; <%#Eval("nombreVendedor") %><br />
                                                             PrecioSubtotal:&nbsp;&nbsp; <%#Eval("precioSubtotal") %><br />
+                                                            <asp:Button ID="Button4" runat="server" Text="editar" CommandName="editar" ValidationGroup="lista" />
+                                                            <asp:Button ID="Button5" runat="server" Text="borrar" CommandName="borrar" ValidationGroup="lista" />
                                                         </div>
                                                     </div>
                                                 </div>

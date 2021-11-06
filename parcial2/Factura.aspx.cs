@@ -24,8 +24,9 @@ namespace parcial2
             String sql = "";
             if (condicion != null)
             {
-                sql = "select c.cedula as idcliente, c.nombre as nombreCliente, f.cantidad, v.nombre as nombreVendedor, " +
-                    "f.precio as precioSubtotal, p.nombre as nombreProducto, p.precio as precioUnitario " +
+                sql = "select f.Id as pedido, c.cedula as idcliente, c.nombre as nombreCliente, f.cantidad, v.nombre as nombreVendedor, " +
+                    "f.precio as precioSubtotal, p.nombre as nombreProducto, p.precio as precioUnitario, " +
+                    "f.idproducto as codigoProducto " +
                     "from factura f " +
                     "INNER JOIN cliente c on f.idcliente=c.cedula " +
                     "INNER JOIN vendedor v on f.idvendedor=v.cedula " +
@@ -34,8 +35,8 @@ namespace parcial2
             }
             else
             {
-                sql = "select c.cedula as idcliente, c.nombre as nombreCliente, f.cantidad, v.nombre as nombreVendedor, " +
-                    "f.precio as precioSubtotal, p.nombre as nombreProducto, p.precio as precioUnitario " +
+                sql = "select f.Id as pedido, c.cedula as idcliente, c.nombre as nombreCliente, f.cantidad, v.nombre as nombreVendedor, " +
+                    "f.precio as precioSubtotal, p.nombre as nombreProducto, p.precio as precioUnitario, f.idproducto as codigoProducto " +
                     "from factura f " +
                     "INNER JOIN cliente c on f.idcliente=c.cedula " +
                     "INNER JOIN vendedor v on f.idvendedor=v.cedula " +
@@ -116,6 +117,60 @@ namespace parcial2
             Label4.Text = "Total a pagar: " + cont;
 
             llenar(cedula);
+        }
+
+        protected void comando(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "editar")
+            {
+                DataList1.EditItemIndex = e.Item.ItemIndex;
+                llenar(null);
+            }
+            else if (e.CommandName == "cancelar")
+            {
+                DataList1.EditItemIndex = -1;
+                llenar(null);
+            }
+            else if (e.CommandName == "actualizar")
+            {
+                String codigo = ((Label)e.Item.FindControl("Label5")).Text;
+                String cantidadString = ((TextBox)e.Item.FindControl("TextBox3")).Text;
+                int cantidad = int.Parse(cantidadString);
+                String producto= ((Label)e.Item.FindControl("Label6")).Text;
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from producto where codigo='" + producto + "'", con);
+                DataSet dataSet = new DataSet();
+                sqlDataAdapter.Fill(dataSet);
+
+                int subtotal = int.Parse(dataSet.Tables[0].Rows[0].Field<String>("precio")) * cantidad;
+
+                SqlCommand sqlCommand = new SqlCommand("update factura set cantidad = @cantidad, " +
+                    "precio = @precio where Id = @Id", con);
+
+                sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = codigo;
+                sqlCommand.Parameters.Add("@cantidad", SqlDbType.VarChar).Value = cantidad;
+                sqlCommand.Parameters.Add("@precio", SqlDbType.VarChar).Value = subtotal;
+
+                con.Open();
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+                DataList1.EditItemIndex = -1;
+                llenar(null);
+            }
+            else if (e.CommandName == "borrar")
+            {
+                String codigo = ((Label)e.Item.FindControl("Label5")).Text;
+
+                SqlCommand sqlCommand = new SqlCommand("delete from factura where Id = @Id", con);
+
+                sqlCommand.Parameters.Add("@Id", SqlDbType.VarChar).Value = codigo;
+
+                con.Open();
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+
+                llenar(null);
+            }
         }
 
         //protected void btGuardar_Click(object sender, EventArgs e)
